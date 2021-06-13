@@ -8,26 +8,20 @@
   <span class="logo">blogum.com</span>
   <span class="example-spacer"></span>
   
-  <button mat-button routerLink="/create-post">
+  <button mat-button routerLink="/create-post" *ngIf="isAuthorOrAdmin">
     Gönderi Ekle
   </button>
 
-  <button mat-button routerLink="/create-category">
+  <button mat-button routerLink="/create-category" *ngIf="isAuthorOrAdmin">
     Kategori Ekle
   </button>
   
   <button
     mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-  >
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button
-    mat-icon-button
     class="example-icon"
-    aria-label="Example icon-button with share icon"
+    aria-label="Logout"
+    (click)="logout()"
   >
-    <mat-icon>share</mat-icon>
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>

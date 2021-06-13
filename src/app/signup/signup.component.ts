@@ -5,6 +5,10 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
+import { Router } from '@angular/router';
+import { SignupRequestModel } from '../models/auth.model';
+import { Rank } from '../models/rank.model';
+import { AuthService } from '../services/auth.service';
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
@@ -32,9 +36,8 @@ export class SignupComponent implements OnInit {
     {
       name: new FormControl("", Validators.required),
       surname: new FormControl("", Validators.required),
-      email: new FormControl("", [Validators.required, Validators.email,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]
-        ),
+      email: new FormControl("", [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+      username: new FormControl('', [Validators.required]),
       password: new FormControl("", [
         Validators.required,
         Validators.minLength(6),
@@ -52,14 +55,41 @@ export class SignupComponent implements OnInit {
   );
   constructor(
     private fb: FormBuilder,
-  ) {}
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   get validaton() {
     return this.registerForm.controls;
   }
 
-  ngOnInit(): void {
-    this.registerForm;
+  ngOnInit(): void { }
+
+  signup() {
+    if (this.registerForm.valid) {
+      const request = <SignupRequestModel>{
+        ...this.registerForm.value,
+        rank: Rank.User
+      };
+
+      this.authService.signup(request)
+        .toPromise()
+        .then(async result => {
+          const signInResult = await this.authService.signin({
+            email: result.email,
+            password: result.password
+          }).toPromise();
+
+          if (signInResult) {
+            this.authService.setUser(signInResult);
+
+            this.router.navigateByUrl('/blogs');
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    }
   }
 
 }
