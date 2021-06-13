@@ -43,8 +43,8 @@ export class CreateBlogComponent implements OnInit {
           console.error(err);
         })
         .finally(() => {
-          this.postForm.reset();
-          // this.router.navigateByUrl('/blogs');
+          // this.postForm.reset();
+          this.router.navigateByUrl('/blogs');
         })
 
     } else {

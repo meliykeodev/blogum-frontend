@@ -35,8 +35,8 @@ export class CreateCategoryComponent implements OnInit {
           console.error(err);
         })
         .finally(() => {
-          this.categoryForm.reset();
-          // this.router.navigateByUrl('/blogs');
+          // this.categoryForm.reset();
+          this.router.navigateByUrl('/blogs');
         });
     }
   }
