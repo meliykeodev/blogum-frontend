@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-form-field {
+    display: block !important;
+    position: relative;
+    text-align: left;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.mat-toolbar {
+    color: #f44336 !important;
+    background-color: #00000033;
+}
+
+textarea {
+    resize: none !important;
+}

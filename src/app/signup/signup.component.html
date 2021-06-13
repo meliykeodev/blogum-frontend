@@ -1,0 +1,117 @@
+<body>
+  <form [formGroup]="registerForm">
+    <mat-card>
+      <mat-card-title class="text-center p-1">
+        <h1>Kayıt Ol</h1></mat-card-title
+      >
+      <mat-form-field class="w-100 yellow-input">
+        <input
+          matInput
+          type="text"
+          placeholder="Adınız"
+          class="form-control"
+          formControlName="name"
+          [ngClass]="{
+            'is-invalid': validaton.name.touched && validaton.name.errors
+          }"
+        />
+        <div
+          *ngIf="validaton.name.touched && validaton.name.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="validaton.name.errors.required">İSİM ZORUNLUDUR</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="w-100 yellow-input">
+        <input
+          matInput
+          type="text"
+          placeholder="Soyadınız"
+          class="form-control"
+          formControlName="surname"
+          [ngClass]="{
+            'is-invalid': validaton.surname.touched && validaton.surname.errors
+          }"
+        />
+        <div
+          *ngIf="validaton.surname.touched && validaton.surname.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="validaton.surname.errors.required">SOY AD ZORUNLUDUR</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="w-100 yellow-input">
+        <input
+          matInput
+          type="password"
+          placeholder="Şifreniz"
+          class="form-control"
+          formControlName="password"
+          #pass
+          [ngClass]="{
+            'is-invalid':
+              validaton.password.touched && validaton.password.errors
+          }"
+        />
+        <div
+          *ngIf="validaton.password.touched && validaton.password.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="validaton.password.errors.required">
+            ŞİFRE ALANI ZORUNLUDUR
+          </div>
+          <div *ngIf="validaton.password.errors.minlength">
+            ŞİFRENİZ ÇOK KISA.
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="w-100 yellow-input">
+        <input
+          matInput
+          type="password"
+          placeholder="Şifreniz"
+          class="form-control"
+          formControlName="repassword"
+          #repass
+          [ngClass]="{
+            'is-invalid':
+              validaton.repassword.touched && validaton.repassword.errors
+          }"
+        />
+        <div
+          *ngIf="validaton.repassword.touched && validaton.repassword.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="validaton.repassword.errors.required">
+            ŞİFRE ZORUNLUDUR
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="w-100 yellow-input pb-0 mb-0">
+        <input
+          matInput
+          type="text"
+          placeholder="Email"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': validaton.email.touched && validaton.email.errors
+          }"
+        />
+        <div
+          *ngIf="validaton.email.touched && validaton.email.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="validaton.email.errors.required">MAİL ZORUNLUDUR</div>
+          <div *ngIf="validaton.email.errors.email">FORMATA UYGUN YAZINIZ</div>
+        </div>
+      </mat-form-field>
+      <div class="row">
+        <div class="col-6">
+          <button mat-flat-button color="warn">Kayıt Ol</button>
+        </div>
+        <div class="col-6"><a [routerLink]="['/signin']">Giriş Yap</a></div>
+      </div>
+    </mat-card>
+  </form>
+</body>

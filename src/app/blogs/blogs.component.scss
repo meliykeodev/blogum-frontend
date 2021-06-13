@@ -1,0 +1,22 @@
+.mat-typography {
+  background-color: #ffebee !important;
+}
+.app-card {
+  max-width: 595px !important;
+  cursor: pointer;
+  display: block;
+  margin: 16px auto;
+  padding: 10px;
+  background-color: white;
+
+  .example-header-image {
+    background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+    background-size: cover;
+  }
+}
+
+body {
+  background: #f5f4f3;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
